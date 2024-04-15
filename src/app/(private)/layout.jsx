@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useLoginContext } from '@/context/LoginContext';
 import { useEffect } from "react";
 
-export const Page = ({ children }) => {
+export default function RootLayout ({ children }) {
     const rota = useRouter();
     const { user, dispath } = useLoginContext();
     useEffect(() => {
@@ -19,4 +19,3 @@ export const Page = ({ children }) => {
         </>
     );
 }
-export default Page;
