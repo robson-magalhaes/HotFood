@@ -22,8 +22,4 @@ export default {
         const json = await res.json();
         return json;
     }
-    // ,
-    // getProducts: async () => {
-
-    // }
 }

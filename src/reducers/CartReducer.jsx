@@ -21,18 +21,20 @@ export const CartReducer = (state = initialState, action) => {
             }
             return { ...state, products };
         case 'CHANGE_PRODUCT':
-            if (products[action.payload.key]) {
-                switch (action.payload.type) {
-                    case '-':
-                        products[action.payload.key].quantity--;
-                        if (products[action.payload.key].quantity <= 0) {
-                            products = products.filter((item, index) => index != action.payload.key)
-                        }
-                        break;
-                    case '+':
-                        products[action.payload.key].quantity++;
-
-                        break;
+            if (state.products.length > 0) {
+                let item = products[action.payload.key];
+                if (item) {
+                    switch (action.payload.type) {
+                        case '-':
+                            item.quantity--;
+                            if (item.quantity <= 0) {
+                                products = products.filter((item, index) => index != action.payload.key)
+                            }
+                            break;
+                        case '+':
+                            item.quantity++;
+                            break;
+                    }
                 }
             }
             return { ...state, products };

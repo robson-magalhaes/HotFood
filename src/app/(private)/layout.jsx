@@ -7,6 +7,7 @@ import { useEffect } from "react";
 export default function RootLayout ({ children }) {
     const rota = useRouter();
     const { user, dispath } = useLoginContext();
+    
     useEffect(() => {
         if (!user.token || user.token == '') {
             rota.push('/login');

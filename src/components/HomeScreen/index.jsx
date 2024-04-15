@@ -6,7 +6,7 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import MenuItem from '@/components/MenuItem';
 import Cart from '@/components/Cart';
 import { Provider } from 'react-redux';
-import { store } from '@/app/store';
+import { store } from '@/redux/store';
 
 export default ({ children }) =>{
   return (

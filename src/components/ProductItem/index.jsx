@@ -3,7 +3,8 @@ import * as C from './styled';
 export default ({data, click}) => {
     const handleClick = () => {
         click(data);
-    }
+    };
+
     return(
         <C.Container onClick={handleClick}>
             <C.ProductPhotoArea>
