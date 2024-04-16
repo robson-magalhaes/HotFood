@@ -1,9 +1,6 @@
 "use client"
-
 import * as C from './styled';
-
 import { ReactNode, useEffect, useState } from 'react';
-
 import api from '@/api/Ping';
 import Header from '../components/Header';
 import CategoryItem from '@/components/CategoryItem';
@@ -11,9 +8,13 @@ import ProductItem from '@/components/ProductItem';
 import Modal from '@/components/Modal';
 import ModalProduct from '@/components/ModalProduct';
 
-let searchTimer:any = null;
+let searchTimer: any = null;
 
-const Page = ({ children }:{children:ReactNode}) => {
+interface PageProps {
+  children?: ReactNode;
+}
+
+const Page = ({ children }: PageProps) => {
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -28,21 +29,20 @@ const Page = ({ children }:{children:ReactNode}) => {
 
   const getProducts = async () => {
     const prod = await api.getProducts(activeCategory, activePage, activeSearch);
-    if (prod.error == '') {
+    if (prod.error === '') {
       setProducts(prod.result.data);
       setTotalPages(prod.result.pages);
       setActivePage(prod.result.page);
     }
-  }
+  };
 
   useEffect(() => {
     const getCategories = async () => {
       const cat = await api.getCategories();
-      setCategories(cat.result);
-      if (cat.error == '') {
+      if (cat.error === '') {
         setCategories(cat.result);
       }
-    }
+    };
     getCategories();
   }, []);
 
@@ -50,7 +50,7 @@ const Page = ({ children }:{children:ReactNode}) => {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
       setActiveSearch(headerSearch);
-    }, 2000)
+    }, 2000);
   }, [headerSearch]);
 
   useEffect(() => {
@@ -58,14 +58,15 @@ const Page = ({ children }:{children:ReactNode}) => {
     getProducts();
   }, [activeCategory, activePage, activeSearch]);
 
-  const handleProductClick = (data:any) => {
+  const handleProductClick = (data: any) => {
     setModalStatus(true);
     setModalData(data);
-  }
+  };
+
   return (
     <C.Container>
       <Header search={headerSearch} onSearch={setHeaderSearch} />
-      {categories.length > 0 &&
+      {categories.length > 0 && (
         <C.CategoryArea>
           Selecione uma categoria
           <C.CategoryList>
@@ -73,54 +74,54 @@ const Page = ({ children }:{children:ReactNode}) => {
               data={{
                 id: 0,
                 name: 'Todas as categorias',
-                image: '/assets/food-and-restaurant.png'
+                image: '/assets/food-and-restaurant.png',
               }}
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}
             />
-            {categories.map((x, key) => (
-              <>
-                <CategoryItem
-                  key={key}
-                  data={x}
-                  activeCategory={activeCategory}
-                  setActiveCategory={setActiveCategory}
-                />
-              </>
+            {categories.map((x: any, key: number) => (
+              <CategoryItem
+                key={key}
+                data={x}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+              />
             ))}
           </C.CategoryList>
         </C.CategoryArea>
-      }
-      {products.length > 0 &&
+      )}
+      {products.length > 0 && (
         <C.ProductArea>
           <C.ProductList>
-
-            {products.map((x, key) => (
+            {products.map((x: any, key: number) => (
               <ProductItem key={key} data={x} click={handleProductClick} />
             ))}
           </C.ProductList>
         </C.ProductArea>
-      }
+      )}
 
-      {totalpages > 0 &&
+      {totalpages > 0 && (
         <C.ProductPaginationArea>
-          {Array(totalpages).fill(0).map((x, key) => (
-            <C.ProductPaginationItem
-              key={key}
-              active={activePage}
-              current={key + 1}
-              onClick={() => setActivePage(key + 1)}
-            >
-              {key + 1}
-            </C.ProductPaginationItem>
-          ))}
+          {Array(totalpages)
+            .fill(0)
+            .map((x, key) => (
+              <C.ProductPaginationItem
+                key={key}
+                active={activePage}
+                current={key + 1}
+                onClick={() => setActivePage(key + 1)}
+              >
+                {key + 1}
+              </C.ProductPaginationItem>
+            ))}
         </C.ProductPaginationArea>
-      }
+      )}
       <Modal status={modalStatus} setModalStatus={setModalStatus}>
         <ModalProduct data={modalData} setModalStatus={setModalStatus} />
       </Modal>
       {children}
     </C.Container>
-  )
-}
-export default Page;  
+  );
+};
+
+export default Page;

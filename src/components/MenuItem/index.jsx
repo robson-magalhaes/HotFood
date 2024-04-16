@@ -1,21 +1,25 @@
 import { useRouter } from 'next/navigation';
-import { useRouter as route} from 'next/router';
 import * as C from './styled';
 import { useEffect, useState } from 'react';
 
 export const MenuItem = ({ title, icon, link }) => {
     const router = useRouter();
     const [isActive, setIsActive] = useState(false);
-    let ativo = location.pathname;
-    useEffect(()=>{
-        setIsActive(ativo == link);
-    },[isActive])
+    useEffect(() =>{
+        router.refresh();
+    },[isActive]);
 
     const handleLinkClick = (e) => {
         e.preventDefault();
-        console.log(isActive);
         router.push(link);
+        if(location.pathname == link){
+            setIsActive(true);
+            console.log('sim');
+        }else{
+            setIsActive(false);
+        }
     };
+    
     return (
         <C.LinkArea
             data-tooltip-content={title}
