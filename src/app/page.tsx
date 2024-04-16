@@ -1,4 +1,5 @@
 "use client"
+
 import * as C from './styled';
 import { ReactNode, useEffect, useState } from 'react';
 import api from '@/api/Ping';
