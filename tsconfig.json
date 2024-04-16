@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/redux/reducers/UserReducer.jsx", "src/components/MenuItem/index.jsx", "src/app/(private)/orders/page.jsx", "src/app/(private)/profile/page.jsx", "src/app/page.tsx", "src/app/layout.tsx", "src/redux/reducers/counterSlice.js", "src/reducers/UserReducer.jsx", "src/redux/store.js", "src/app/store.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/redux/reducers/UserReducer.jsx", "src/components/MenuItem/index.jsx", "src/app/(private)/orders/page.jsx", "src/app/(private)/profile/page.jsx", "src/app/page.tsx", "src/app/layout.tsx", "src/redux/reducers/counterSlice.js", "src/reducers/UserReducer.jsx", "src/redux/store.js", "src/app/store.js", "src/app/Home/page.jsx"],
   "exclude": ["node_modules"]
 }
