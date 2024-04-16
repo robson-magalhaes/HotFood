@@ -13,7 +13,7 @@ import ModalProduct from '@/components/ModalProduct';
 
 let searchTimer = null;
 
-export default ({ children }) => {
+export const Page = ({ children }) => {
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -123,3 +123,4 @@ export default ({ children }) => {
     </C.Container>
   )
 }
+export default Page;  
