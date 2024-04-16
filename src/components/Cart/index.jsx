@@ -5,8 +5,8 @@ import * as C from './styled';
 import { useState } from 'react';
 
 export const Cart = () => {
-    const products = useSelector(state => state.cart.products);
     const dispatch = useDispatch();
+    const products = useSelector(state => state.cart.products);
 
     const [show, setShow] = useState(true);
 
@@ -14,10 +14,7 @@ export const Cart = () => {
         setShow(!show);
     }
     const handleProductChange = (key, type) => {
-        dispatch({
-            type: 'CHANGE_PRODUCT',
-            payload: { key, type }
-        });
+        dispatch({type: "CHANGE_PRODUCT", payload: { key:key, type:type }})
     }
     return (
         <C.CartArea>

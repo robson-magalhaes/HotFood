@@ -2,7 +2,7 @@
 
 import * as C from './styled';
 
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import api from '@/api/Ping';
 import Header from '../components/Header';
@@ -11,9 +11,9 @@ import ProductItem from '@/components/ProductItem';
 import Modal from '@/components/Modal';
 import ModalProduct from '@/components/ModalProduct';
 
-let searchTimer = null;
+let searchTimer:any = null;
 
-const Page = ({ children }) => {
+const Page = ({ children }:{children:ReactNode}) => {
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -58,7 +58,7 @@ const Page = ({ children }) => {
     getProducts();
   }, [activeCategory, activePage, activeSearch]);
 
-  const handleProductClick = (data) => {
+  const handleProductClick = (data:any) => {
     setModalStatus(true);
     setModalData(data);
   }
