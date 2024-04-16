@@ -1,7 +1,7 @@
 "use client"
 
 import * as C from './styled';
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '@/api/Ping';
 import Header from '@/components/Header';
 import CategoryItem from '@/components/CategoryItem';
@@ -11,7 +11,7 @@ import ModalProduct from '@/components/ModalProduct';
 
 let searchTimer = null;
 
-export default function({ children }) {
+export default () => {
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -116,7 +116,6 @@ export default function({ children }) {
       <Modal status={modalStatus} setModalStatus={setModalStatus}>
         <ModalProduct data={modalData} setModalStatus={setModalStatus} />
       </Modal>
-      {children}
     </C.Container>
   );
 };
