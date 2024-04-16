@@ -11,9 +11,9 @@ import ProductItem from '@/components/ProductItem';
 import Modal from '@/components/Modal';
 import ModalProduct from '@/components/ModalProduct';
 
-let searchTimer:any = null;
+let searchTimer = null;
 
-export const Page = ({ children }:any) => {
+const Page = ({ children }) => {
   const [headerSearch, setHeaderSearch] = useState('');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -58,7 +58,7 @@ export const Page = ({ children }:any) => {
     getProducts();
   }, [activeCategory, activePage, activeSearch]);
 
-  const handleProductClick = (data:any) => {
+  const handleProductClick = (data) => {
     setModalStatus(true);
     setModalData(data);
   }
